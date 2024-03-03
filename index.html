@@ -12,6 +12,7 @@
         <canvas id="otrocanvas" width="150" height="150" style="display: none"></canvas>
         <div id="resultado"></div>
         <div id="loader"></div>
+        <button class="btn btn-primary mb-2" id="cambiar-camara" onclick="cambiarCamara();">Cambiar camara</button>
     </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
@@ -183,6 +184,33 @@
 
 
           ctx2.putImageData(img2, 0, 0);
+      }
+
+      function cambiarCamara() {
+          if (currentStream) {
+              currentStream.getTracks().forEach(track => {
+                  track.stop();
+              });
+          }
+
+          facingMode = facingMode == "user" ? "environment" : "user";
+
+          var opciones = {
+              audio: false,
+              video: {
+                  facingMode: facingMode, width: tamano, height: tamano
+              }
+          };
+
+
+          navigator.mediaDevices.getUserMedia(opciones)
+              .then(function(stream) {
+                  currentStream = stream;
+                  video.srcObject = currentStream;
+              })
+              .catch(function(err) {
+                  console.log("Oops, hubo un error", err);
+              })
       }
 </script>
 </html>
