@@ -41,7 +41,7 @@
     function procesarCamara() {
         ctx.save(); // Guardar el estado actual del contexto
         ctx.translate(tamano, 0); // Mover el origen al extremo derecho del canvas
-        
+        ctx.scale(-1, 1); // Invertir horizontalmente
         ctx.drawImage(video, 0, 0, tamano, tamano, 0, 0, tamano, tamano);
         ctx.restore(); // Restaurar el estado previo del contexto
         setTimeout(procesarCamara, 20);
