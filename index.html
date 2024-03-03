@@ -105,9 +105,9 @@
 
         var respuesta;
         if (resultado <= .5) {
-          respuesta = `Probabilidad de ${Math.round((resultado*2)*100)}% ser un Gato`;
+          respuesta = `Gato`;
         } else {
-          respuesta = `Probabilidad de ${Math.round((resultado)*100)}% ser un Perro`;
+          respuesta = `Perro`;
         }
         document.getElementById("resultado").innerHTML = respuesta;
 
